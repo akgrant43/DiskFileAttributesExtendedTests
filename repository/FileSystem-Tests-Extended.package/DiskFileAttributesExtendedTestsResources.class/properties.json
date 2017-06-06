@@ -1,0 +1,16 @@
+{
+	"commentStamp" : "AlistairGrant 6/6/2017 14:18",
+	"super" : "TestResource",
+	"category" : "FileSystem-Tests-Extended",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"file",
+		"symboliclink",
+		"targetFile",
+		"timestamps"
+	],
+	"name" : "DiskFileAttributesExtendedTestsResources",
+	"type" : "normal"
+}

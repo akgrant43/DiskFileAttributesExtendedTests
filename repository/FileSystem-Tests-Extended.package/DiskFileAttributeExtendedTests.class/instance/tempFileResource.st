@@ -1,0 +1,4 @@
+helper methods
+tempFileResource
+
+	^DiskFileAttributesExtendedTestsResources current

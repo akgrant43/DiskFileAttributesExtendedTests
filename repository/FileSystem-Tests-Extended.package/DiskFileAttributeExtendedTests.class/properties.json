@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "TestCase",
+	"category" : "FileSystem-Tests-Extended",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"primitives"
+	],
+	"name" : "DiskFileAttributeExtendedTests",
+	"type" : "normal"
+}
