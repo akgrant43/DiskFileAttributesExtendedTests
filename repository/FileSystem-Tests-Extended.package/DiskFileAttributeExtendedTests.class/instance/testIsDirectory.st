@@ -1,4 +1,4 @@
-tests
+tests - single attribute
 testIsDirectory
 
 	| file |

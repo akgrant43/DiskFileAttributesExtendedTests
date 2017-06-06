@@ -1,4 +1,4 @@
-tests
+tests - single attribute
 testIsBlock
 
 	self assert: self fileAttributes isBlock equals: false.

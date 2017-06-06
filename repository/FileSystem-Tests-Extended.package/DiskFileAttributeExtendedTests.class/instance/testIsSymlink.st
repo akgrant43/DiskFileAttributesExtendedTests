@@ -1,4 +1,4 @@
-tests
+tests - single attribute
 testIsSymlink
 
 	self assert: self fileAttributes isSymlink equals: false.

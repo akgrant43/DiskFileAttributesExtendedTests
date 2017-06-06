@@ -8,6 +8,7 @@
 	"instvars" : [
 		"file",
 		"symboliclink",
+		"brokenSymlink",
 		"targetFile",
 		"timestamps"
 	],

@@ -1,4 +1,4 @@
-tests
+tests - single attribute
 testIsWriteable
 
 	self assert: self fileAttributes isWritable equals: true.

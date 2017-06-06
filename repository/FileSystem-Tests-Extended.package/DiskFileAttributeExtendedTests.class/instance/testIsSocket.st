@@ -1,4 +1,4 @@
-tests
+tests - single attribute
 testIsSocket
 
 	self assert: self fileAttributes isSocket equals: false.

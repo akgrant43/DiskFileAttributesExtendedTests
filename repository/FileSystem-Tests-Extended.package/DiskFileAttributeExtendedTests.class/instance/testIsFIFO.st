@@ -1,4 +1,4 @@
-tests
+tests - single attribute
 testIsFIFO
 
 	self assert: self fileAttributes isFIFO equals: false.

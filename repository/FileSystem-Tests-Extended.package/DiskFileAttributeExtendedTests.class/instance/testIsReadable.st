@@ -1,4 +1,4 @@
-tests
+tests - single attribute
 testIsReadable
 
 	self assert: self fileAttributes isReadable equals: true.

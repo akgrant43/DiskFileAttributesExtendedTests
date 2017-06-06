@@ -1,4 +1,4 @@
-tests
+tests - single attribute
 testFileSize
 
 	self assert: self fileAttributes fileSize equals: 84.

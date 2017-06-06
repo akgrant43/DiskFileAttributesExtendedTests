@@ -1,4 +1,4 @@
-tests
+tests - single attribute
 testIsRegular
 
 	self assert: self fileAttributes isRegular equals: true.

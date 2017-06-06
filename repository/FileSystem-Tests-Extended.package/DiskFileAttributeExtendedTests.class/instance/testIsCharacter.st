@@ -1,4 +1,4 @@
-tests
+tests - single attribute
 testIsCharacter
 
 	self assert: self fileAttributes isCharacter equals: false.

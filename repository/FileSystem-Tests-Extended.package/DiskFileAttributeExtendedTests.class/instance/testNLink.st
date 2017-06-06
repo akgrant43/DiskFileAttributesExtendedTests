@@ -1,4 +1,4 @@
-tests
+tests - single attribute
 testNLink
 	"Assume that there is only one hard link to the just created temporary file"
 

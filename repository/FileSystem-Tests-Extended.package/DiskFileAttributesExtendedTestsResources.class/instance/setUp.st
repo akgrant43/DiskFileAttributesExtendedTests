@@ -1,12 +1,14 @@
 running
 setUp
 
-	| ws ts proc |
+	| ws ts proc brokenTarget |
 
 	timestamps := OrderedCollection new.
 	file := FileLocator temp / ('FileAttributesTests-', UUIDGenerator next asString, '.txt').
 	targetFile := FileLocator temp / ('FileAttributesTests-', UUIDGenerator next asString, '.txt').
 	symboliclink := FileLocator temp / ('FileAttributesTests-', UUIDGenerator next asString, '.txt').
+	brokenSymlink := FileLocator temp / ('FileAttributesTests-', UUIDGenerator next asString, '.txt').
+
 	ts := DateAndTime now.
 	"Remove the nanoseconds"
 	ts := DateAndTime
@@ -37,6 +39,27 @@ setUp
 	[ proc isComplete ] whileFalse:
 		[ (Delay forMilliseconds: 500) wait ].
 	self assert: proc exitStatus equals: 0.
+
+	"Create a temporary target file, create a symbolic link to it, and delete the target.
+	Used for checking the behaviour of broken symbolic links."
+	brokenTarget := FileLocator temp / ('FileAttributesTests-', UUIDGenerator next asString, '.txt').
+	ws := brokenTarget writeStream.
+	[
+		ws nextPutAll: 'Created by DiskFileAttributesExtendedTestsResources>>setUp '.
+		ts printOn: ws.
+	] ensure: [ ws close ].
+	"Create a symbolic link to the file"
+	proc := OSProcess command: (String streamContents: [ :stream |
+			stream
+				<< 'ln -s ';
+				<< brokenTarget fullName;
+				<< ' ';
+				<< brokenSymlink fullName ]).
+	[ proc isComplete ] whileFalse:
+		[ (Delay forMilliseconds: 500) wait ].
+	self assert: proc exitStatus equals: 0.
+	brokenTarget delete.
+
 	ts := DateAndTime now rounded.
 	"Round up to the next second"
 	ts := DateAndTime
