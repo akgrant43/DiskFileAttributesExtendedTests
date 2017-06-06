@@ -1,0 +1,2 @@
+# DiskFileAttributesExtendedTests
+Additional tests for Pharo DiskFileAttributes
