@@ -30,15 +30,10 @@ setUp
 		ts printOn: ws.
 	] ensure: [ ws close ].
 	"Create a symbolic link to the file"
-	proc := OSProcess command: (String streamContents: [ :stream |
-			stream
-				<< 'ln -s ';
-				<< targetFile fullName;
-				<< ' ';
-				<< symboliclink fullName ]).
-	[ proc isComplete ] whileFalse:
-		[ (Delay forMilliseconds: 500) wait ].
-	self assert: proc exitStatus equals: 0.
+	proc := AKGOSProcess command: '/bin/ln'
+				arguments: {'-s'. targetFile fullName. symboliclink fullName. }.
+	proc runAndWait.
+	self assert: proc isSuccess equals: true.
 
 	"Create a temporary target file, create a symbolic link to it, and delete the target.
 	Used for checking the behaviour of broken symbolic links."
@@ -49,15 +44,10 @@ setUp
 		ts printOn: ws.
 	] ensure: [ ws close ].
 	"Create a symbolic link to the file"
-	proc := OSProcess command: (String streamContents: [ :stream |
-			stream
-				<< 'ln -s ';
-				<< brokenTarget fullName;
-				<< ' ';
-				<< brokenSymlink fullName ]).
-	[ proc isComplete ] whileFalse:
-		[ (Delay forMilliseconds: 500) wait ].
-	self assert: proc exitStatus equals: 0.
+	proc := AKGOSProcess command: '/bin/ln'
+				arguments: {'-s'. brokenTarget fullName. brokenSymlink fullName }.
+	proc runAndWait.
+	self assert: proc isSuccess equals: true.
 	brokenTarget delete.
 
 	ts := DateAndTime now rounded.
