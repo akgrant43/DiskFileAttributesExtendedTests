@@ -1,20 +1,15 @@
 tests - broken link
 testDiskFileAttributesBrokenLink
-	"File attributes requested directly from a file reference to a broken symbolic link answer the links attribute value"
+	"Check the symlink attributes of a broken symlink"
 
-	| fileReference attributes attributeNames trueAttributes falseAttributes |
+	| fileReference attributes trueAttributes falseAttributes |
 	
 	fileReference := self tempFileResource brokenSymlink.
-	attributes := fileReference attributes.
+	attributes := fileReference symlinkEntry.
 
-	attributeNames := self commonAttributeNames asSet.
-	trueAttributes := #(#isSymlink).
-	falseAttributes := #(#isDirectory #isFile #isExecutable #isReadable #isWritable).
-	attributeNames removeAll: trueAttributes.
-	attributeNames removeAll: falseAttributes.
-	attributeNames do: 
-		[ :each | self should: [each value: attributes] raise: FileDoesNotExist ].
-	self should: [attributes fileSize] raise: FileDoesNotExist.
+	trueAttributes := #(#isSymlink #isFile).
+	falseAttributes := #(#isDirectory #isExecutable #isReadable #isWritable).
+	self assert: attributes size equals: fileReference fullName size.
 	trueAttributes do:
 		[ :each | self assert: (each value: attributes) equals: true ].
 	falseAttributes do:

@@ -5,12 +5,12 @@ testFileReferenceBrokenLink
 	| fileReference linkAttributes attributeNames |
 	
 	fileReference := self tempFileResource file resolve.
-	linkAttributes := DiskSymlinkAttributes forFile: fileReference.
+	linkAttributes := DiskSymlinkDirectoryEntry reference: fileReference.
 
 	attributeNames := self commonAttributeNames asSet.
 	attributeNames remove: #permissions.
 	attributeNames do: 
 		[ :each | self assert: (each value: fileReference) equals: (each value: linkAttributes) ].
-	self assert: fileReference size equals: linkAttributes fileSize.
+	self assert: fileReference size equals: linkAttributes size.
 	self assert: fileReference permissions posixPermission
 			equals: linkAttributes permissions posixPermission

@@ -1,12 +1,10 @@
 tests - single attribute
 testIsExecutable
 
-	| file filesystem path |
+	| file |
 
 	file := FileLocator vmBinary resolve.
-	filesystem := file fileSystem.
-	path := file path.
-	self assert: (DiskFileAttributes store: filesystem store path: path) isExecutable.
+	self assert: (DiskDirectoryEntry reference: file) isExecutable.
 
 	self assert: self fileAttributes isExecutable equals: false.
 	self assert: self targetFileAttributes isExecutable equals: false.

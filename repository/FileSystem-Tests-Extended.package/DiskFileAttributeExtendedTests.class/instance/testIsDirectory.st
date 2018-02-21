@@ -9,4 +9,4 @@ testIsDirectory
 	self assert: self symlinkLinkAttributes isDirectory equals: false.
 
 	file := FileLocator temp resolve.
-	self assert: (DiskFileAttributes store: file fileSystem store path: file path) isDirectory.
+	self assert: (DiskDirectoryEntry reference: file) isDirectory.
