@@ -1,5 +1,5 @@
 running
 setUp
 
-	primitives := FileAttributesPluginPrims new.
+	primitives := File.
 	
